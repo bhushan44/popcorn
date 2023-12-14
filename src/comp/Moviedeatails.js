@@ -17,20 +17,20 @@ export default function Moviedeatails({
   // const [selectedrating, setselectedrating] = useState(0);
   // const [iswatched, setiswatched] = useState();
   const iswatched = watched.map((movie) => movie.imdbID).includes(selectedid);
-  console.log("sees", selectedrating);
+  // console.log("sees", selectedrating);
 
   useEffect(
     function () {
       async function req() {
         // setisloading(true);
-        console.log("id", selectedid);
+        // console.log("id", selectedid);
         let res = await fetch(
           `http://www.omdbapi.com/?apikey=f84fc31d&i=${selectedid}`
         );
         let r = await res.json();
         setselectedmovie(r);
-        console.log("movie");
-        console.log(r);
+        // console.log("movie");
+        // console.log(r);
       }
       req();
     },

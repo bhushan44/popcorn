@@ -18,6 +18,24 @@ export default function Project() {
   let key = "f84fc31d";
   useEffect(
     function () {
+      document.addEventListener("keydown", (e) => {
+        if (e.code === "Escape") {
+          setselectedid(null);
+          console.log("opening");
+        }
+      });
+      return function () {
+        document.removeEventListener("keydown", (e) => {
+          if (e.code === "Escape") {
+            setselectedid(null);
+          }
+        });
+      };
+    },
+    [setselectedid]
+  );
+  useEffect(
+    function () {
       let controller = new AbortController();
       async function req() {
         try {
