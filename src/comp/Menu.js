@@ -8,6 +8,7 @@ import { Loading } from "./Project";
 import { Err } from "./Project";
 import Watchedsummary from "./Watchedsummary";
 import Moviedeatails from "./Moviedeatails";
+// import { json } from "body-parser";
 
 export default function Menu({
   query,
@@ -19,7 +20,10 @@ export default function Menu({
   errmsg,
   setisloading,
 }) {
-  const [watched, setwatched] = useState([]);
+  const [watched, setwatched] = useState(function () {
+    let movies = localStorage.getItem("watched");
+    return JSON.parse(movies);
+  });
   function handleisshow() {
     // setisshow((isshow) => !isshow);
   }
@@ -31,6 +35,12 @@ export default function Menu({
 
     console.log("selected", movie);
   }
+  useEffect(
+    function () {
+      localStorage.setItem("watched", JSON.stringify(watched));
+    },
+    [watched]
+  );
 
   return (
     <div className="menu">
